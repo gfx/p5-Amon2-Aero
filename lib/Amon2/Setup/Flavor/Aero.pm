@@ -1,19 +1,20 @@
+package Amon2::Setup::Flavor::Aero;
 use strict;
 use warnings;
 use utf8;
 
-package Amon2::Setup::Flavor::Lite;
 use parent qw/Amon2::Setup::Flavor/;
-use Amon2::Lite;
-use Amon2;
+use Amon2::Aero (); # forVERSION
+use Amon2       (); # for VERSION
 
 sub run {
     my ($self) = @_;
 
-    $self->{amon2_version}      = $Amon2::VERSION;
-    $self->{amon2_lite_version} = $Amon2::Lite::VERSION;
+    $self->{amon2_version}        = $Amon2::VERSION;
+    $self->{amon2_flavor_version} = $Amon2::Aero::VERSION;
 
     $self->write_file('app.psgi', <<'...');
+#!perl
 use strict;
 use warnings;
 use utf8;
@@ -22,7 +23,7 @@ use File::Basename;
 use lib File::Spec->catdir(dirname(__FILE__), 'extlib', 'lib', 'perl5');
 use lib File::Spec->catdir(dirname(__FILE__), 'lib');
 use Plack::Builder;
-use Amon2::Lite;
+use Amon2::Aero;
 
 # put your configuration here
 sub config {
@@ -90,11 +91,11 @@ WriteMakefile(
     VERSION_FROM  => 'app.psgi',
     PREREQ_PM     => {
         'Amon2'                           => '<% $amon2_version %>',
-        'Amon2::Lite'                     => '<% $amon2_lite_version %>',
-        'Text::Xslate'                    => '1.5006',
+        'Amon2::Aero'                     => '<% $amon2_flavor_version %>',
+        'Text::Xslate'                    => '1.5007',
         'Plack::Session'                  => '0.14',
     },
-    MIN_PERL_VERSION => '5.008001',
+    MIN_PERL_VERSION => '5.010',
     (-d 'xt' and $ENV{AUTOMATED_TESTING} || $ENV{RELEASE_TESTING}) ? (
         test => {
             TESTS => 't/*.t xt/*.t',
@@ -168,16 +169,19 @@ __END__
 
 =head1 NAME
 
-Amon2::Setup::Flavor::Lite - Amon2::Lite flavor
+Amon2::Setup::Flavor::Aero - Amon2::Aero flavor
 
 =head1 SYNOPSIS
 
-    % amon2-setup.pl --flavor=Lite MyApp
+    % amon2-setup.pl --flavor=Aero MyApp
 
 =head1 DESCRIPTION
 
-This is a flavor for project using Amon2::Lite.
+This is a flavor for project using Amon2::Aero.
 
 =head1 AUTHOR
 
-Tokuhiro Matsuno
+Fuji Goro (gfx)
+
+The original version was written by tokuhirom
+

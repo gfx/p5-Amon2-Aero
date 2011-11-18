@@ -1,4 +1,4 @@
-package Amon2::Lite;
+package Amon2::Aero;
 use strict;
 use warnings;
 use 5.008008;
@@ -7,7 +7,6 @@ our $VERSION = '0.04';
 use parent qw/Amon2 Amon2::Web/;
 use Router::Simple 0.04;
 use Text::Xslate;
-use Text::Xslate::Bridge::TT2Like;
 use File::Spec;
 use File::Basename qw(dirname);
 use Data::Section::Simple ();
@@ -22,7 +21,7 @@ sub import {
     my $router = Router::Simple->new();
     my $caller = caller(0);
 
-    my $base_class = 'Amon2::Lite::_child_' . $COUNTER++;
+    my $base_class = 'Amon2::Aero::_child_' . $COUNTER++;
     {
         no warnings;
         unshift @{"$base_class\::ISA"}, qw/Amon2 Amon2::Web/;
@@ -99,8 +98,8 @@ sub import {
         # using lazy loading to read __DATA__ section.
         my $vpath = Data::Section::Simple->new($caller)->get_data_section();
         my %params = (
-            'syntax'   => 'TTerse',
-            'module'   => [ 'Text::Xslate::Bridge::TT2Like' ],
+            'syntax'   => 'Kolon',
+            'module'   => [ 'Text::Xslate::Bridge::Star' ],
             'path'     => [ $vpath, $tmpl_dir ],
             'function' => {
                 c        => sub { Amon2->context() },
@@ -151,11 +150,11 @@ __END__
 
 =head1 NAME
 
-Amon2::Lite - Sinatra-ish
+Amon2::Aero - Variation of Amon2::Lite for Xslate/Kolon syntax
 
 =head1 SYNOPSIS
 
-    use Amon2::Lite;
+    use Amon2::Aero;
 
     get '/' => sub {
         my ($c) = @_;
@@ -221,7 +220,7 @@ Write following lines on your app.psgi.
 
 =item How can I use other template engines instead of Text::Xslate?
 
-You can use any template engine with Amon2::Lite. You can overwrite create_view method same as normal Amon2.
+You can use any template engine with Amon2::Aero. You can overwrite create_view method same as normal Amon2.
 
 This is a example to use L<Text::MicroTemplate::File>.
 
@@ -235,22 +234,30 @@ This is a example to use L<Text::MicroTemplate::File>.
 
 =item How can I handle static files?
 
-If you pass the 'handle_static' option to 'to_app' method, Amon2::Lite handles /static/ path to ./static/ directory.
+If you pass the 'handle_static' option to 'to_app' method, Amon2::Aero handles /static/ path to ./static/ directory.
 
-    use Amon2::Lite;
+    use Amon2::Aero;
     __PACKAGE__->to_app(handle_static => 1);
 
 =back
 
 =head1 AUTHOR
 
-Tokuhiro Matsuno E<lt>tokuhirom AAJKLFJEF@ GMAIL COME<gt>
+Fuji Goro (gfx) E<lt>gfuji at cpan.orgE<gt>
+
+=head1 THANKS TO
+
+This is a fork from Amon2::Lite, written by Tokuhiro Matsuno (tokuhirom).
 
 =head1 SEE ALSO
 
+L<Amon2>
+
+L<Amon2::Lite>
+
 =head1 LICENSE
 
-Copyright (C) Tokuhiro Matsuno
+Copyright (C) Fuji Goro (gfx)
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
