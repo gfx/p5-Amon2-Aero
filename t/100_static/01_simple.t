@@ -6,7 +6,7 @@ use Plack::Test;
 use Test::Requires qw/HTTP::Request::Common/, 'Data::Section::Simple';
 
 my $app = do {
-    use Amon2::Lite;
+    use Amon2::Aero;
 
     get '/' => sub { shift->create_response(200, [], ['OK']) };
 

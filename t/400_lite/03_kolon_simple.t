@@ -10,7 +10,7 @@ use lib File::Spec->catdir($FindBin::Bin, '../../lib');
 
 
 my $app = do {
-    use Amon2::Lite;
+    use Amon2::Aero;
 
     __PACKAGE__->template_options(
         syntax => 'Kolon',

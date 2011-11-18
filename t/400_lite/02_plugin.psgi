@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Amon2::Lite;
+use Amon2::Aero;
 
 __PACKAGE__->load_plugin('Web::JSON');
 

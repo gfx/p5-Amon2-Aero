@@ -14,7 +14,7 @@ test_flavor(sub {
             local $/; <$fh>;
         };
     };
-}, 'Lite');
+}, 'Aero');
 
 done_testing;
 

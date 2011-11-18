@@ -5,7 +5,7 @@ use Test::More;
 use Plack::Test;
 use Test::Requires qw/HTTP::Request::Common/, 'Data::Section::Simple';
 
-use Amon2::Lite;
+use Amon2::Aero;
 
 get '/' => sub {
     my ($c) = @_;

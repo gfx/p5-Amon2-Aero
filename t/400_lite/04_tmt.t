@@ -6,7 +6,7 @@ use Plack::Test;
 use Test::Requires qw/Text::MicroTemplate Tiffany::Text::MicroTemplate::File/, 'Data::Section::Simple';
 use HTTP::Request::Common;
 
-use Amon2::Lite;
+use Amon2::Aero;
 
 sub create_view {
     Tiffany::Text::MicroTemplate::File->new(+{

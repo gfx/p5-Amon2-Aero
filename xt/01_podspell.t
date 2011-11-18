@@ -16,8 +16,10 @@ set_spell_cmd($spell_cmd);
 all_pod_files_spelling_ok('lib');
 __DATA__
 Tokuhiro Matsuno
-Amon2::Lite
+Fuji Goro
+Amon2::$
 tokuhirom
+gfx
 AAJKLFJEF
 GMAIL
 COM

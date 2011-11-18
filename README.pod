@@ -1,1 +1,1 @@
-lib/Amon2/Lite.pm
+lib/Amon2/Aero.pm

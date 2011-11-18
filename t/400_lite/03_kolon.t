@@ -8,7 +8,7 @@ use FindBin;
 use File::Spec;
 use lib File::Spec->catdir($FindBin::Bin, '../../lib');
 
-use Amon2::Lite;
+use Amon2::Aero;
 
 sub config {
     +{
