@@ -14,20 +14,19 @@ my $build = Module::Build->new(
     requires             => {
         'Amon2'                         => '3.25',
         'Data::Section::Simple'         => '0.03',
-        perl                            => '5.008008',
-        'Text::Xslate::Bridge::TT2Like' => '0.00010',
+        'perl'                          => '5.010',
         'Router::Simple'                => '0.06',
     },
 
     no_index    => { 'directory' => [ 'inc' ] },
-    name        => 'Amon2-Lite',
-    module_name => 'Amon2::Lite',
+    name        => 'Amon2-Aero',
+    module_name => 'Amon2::Aero',
 
     # script_files => [''],
 
     test_files => (-d '.git' || $ENV{RELEASE_TESTING}) ? 't/ xt/' : 't/',
     recursive_test_files => 1,
-   
+
     create_readme  => 1,
     create_license => 1,
 );
